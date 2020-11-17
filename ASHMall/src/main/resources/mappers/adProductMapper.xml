@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ashmall.mappers.AdProductMapper">
+
+	<!-- 1차카테고리 출력  코드를 null 처리, 10 -->
+	<select id="mainCGList" resultType="CategoryVO">
+		select categ_now, categ_prt, categ_name from categ_tb
+		where categ_prt is null
+	</select>
+	
+	<!-- 1차 카테고리에 해당하는 2차 카테고리 출력 -->
+	<select id="subCGList" parameterType="string" resultType="CategoryVO">
+		select categ_now, categ_prt, categ_name from categ_tb
+		where categ_prt = #{categ_now}
+	</select>
+	
+	<!-- 상품 추가 -->
+	<select id="insertProduct" parameterType="ProductVO">
+		insert into product_tb(pd_num, categ_now, categ_prt, pd_name, pd_price, pd_dc, 
+			pd_company, pd_detail, pd_img, pd_amount, pd_buy, pd_update)
+		values (seq_pd_num.NEXTVAL, #{categ_now}, #{categ_prt}, #{pd_name}, #{pd_price}, #{pd_dc}, 
+			#{pd_company}, #{pd_detail}, #{pd_img}, #{pd_amount}, #{pd_buy}, sysdate)
+	</select>
+	
+	<!-- 검색 조건 : 공통으로 사용하는  구문 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<!-- 상품명 -->
+			<if test="searchType == 'name'.toString()"> 
+				where pd_name like '%' || #{keyword} || '%'
+			</if>
+			<!-- 내용 -->
+			<if test="searchType == 'detail'.toString()"> 
+				where pd_detail like '%' || #{keyword} || '%'
+			</if>
+			<!-- 제조사 -->
+			<if test="searchType == 'company'.toString()"> 
+				where pd_company like '%' || #{keyword} || '%'
+			</if>
+			<!-- 상품명 + 내용 -->
+			<if test="searchType == 'name_detail'.toString()"> 
+				where (pd_name like '%' || #{keyword} || '%')
+				or (pd_detail like '%' || #{keyword} || '%')
+			</if>
+			<!-- 상품명 + 제조사 -->
+			<if test="searchType == 'name_company'.toString()"> 
+				where (pd_name like '%' || #{keyword} || '%')
+				or (pd_company like '%' || #{keyword} || '%')
+			</if>
+			<!-- 상품명 + 내용 + 제조사 -->
+			<if test="searchType == 'all'.toString()"> 
+				where (pd_name like '%' || #{keyword} || '%')
+				or (pd_detail like '%' || #{keyword} || '%')
+				or (pd_company like '%' || #{keyword} || '%')
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 상품 리스트 (검색조건 포함) -->
+	<select id="searchListProduct" parameterType="SearchCriteria" resultType="ProductVO">
+		select pd_num, categ_now, pd_name, pd_price, pd_dc, pd_company, 
+			pd_detail, pd_img, pd_amount, pd_buy, pd_submit, pd_update
+		from (select pd_num, categ_now, pd_name, pd_price, pd_dc, pd_company, 
+			pd_detail, pd_img, pd_amount, pd_buy, pd_submit, pd_update,
+			row_number() over (order by pd_num desc) p_seq from product_tb
+			<include refid="search" /> )
+		where p_seq between #{rowStart} and #{rowEnd}
+	</select>
+	
+	<!-- 상품 개수 (검색조건 포함) -->
+	<select id="searchListCount" parameterType="SearchCriteria" resultType="int">
+		<![CDATA[
+			select count(pd_num)
+			from product_tb
+		]]>
+		<include refid="search" />
+	</select>
+	
+	<!-- 상품 정보 읽기 -->
+	<select id="readProduct" parameterType="int" resultType="ProductVO">
+		select p.pd_num, p.categ_now, c.categ_prt, p.pd_name, p.pd_price, p.pd_dc,
+			p.pd_company, p.pd_detail, p.pd_img, p.pd_amount, p.pd_buy, p.pd_submit, p.pd_update
+		from product_tb p inner join categ_tb c
+		on p.categ_now= c.categ_now
+		where p.pd_num = #{pd_num}
+	</select>
+	
+	<!-- 상품 수정 -->
+	<update id="editProduct" parameterType="ProductVO">
+		update product_tb
+		set categ_now=#{categ_now}, pd_name=#{pd_name}, pd_price=#{pd_price}, 
+			pd_dc=#{pd_dc}, pd_company=#{pd_company}, 
+			pd_detail=#{pd_detail}, pd_img=#{pd_img}, pd_amount=#{pd_amount}, 
+			pd_buy=#{pd_buy}, pd_update=sysdate
+		where pd_num = #{pd_num}	
+	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteProduct" parameterType="int">
+		delete product_tb
+		where pd_num = #{pd_num}
+	</delete>
+	
+	<!-- 선택한 상품 수정 -->
+	<!-- java.util.Map -->
+	<update id="editChecked" parameterType="Map">
+		update product_tb
+		set pd_amount=#{pd_amount}, pd_buy=#{pd_buy}, pd_update=sysdate
+		where pd_num=#{pd_num}
+	</update>
+	
+</mapper>

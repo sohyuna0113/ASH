@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ashmall.mappers.AdminMapper">
+
+	<select id="login" parameterType="AdminDTO" resultType="AdminVO">
+		select admin_id, admin_pw, admin_name, admin_date_late
+		from admin_tb
+		where admin_id=#{admin_id} and admin_pw=#{admin_pw}
+	</select>
+
+	<update id="loginUpdate" parameterType="string">
+		update admin_tb
+		set admin_date_late = sysdate
+		where admin_id=#{admin_id}
+	</update>
+	
+	<!-- 관리자 기능 -->
+
+	<!-- 관리자 유저목록기능 -->
+	<select id="userList" parameterType="String" resultType="MemberVO">
+		select mb_id, mb_name, mb_phone
+		from mb_tb
+		order by mb_id desc
+	</select>
+
+	<!-- 서치 조건문 -->
+	<sql id="usersearch">
+		<if test="searchType != null">
+			   <if test="searchType == 'n'.toString()">				<!-- 이름 -->
+			     where mb_name like '%' || #{keyword} || '%'
+			   </if>
+			   <if test="searchType == 'i'.toString()">				<!-- 아이디 -->
+			     where mb_id like '%' || #{keyword} || '%'
+			   </if>
+		</if>
+	</sql>
+
+	<!-- 목록 검색 기능 -->
+	<select id="userlistSearch" parameterType="SearchCriteria" resultType="MemberVO">
+		SELECT mb_name, mb_id, mb_phone
+	  	FROM (
+	         SELECT mb_name, mb_id, mb_phone
+	         , ROW_NUMBER() OVER(ORDER BY mb_id DESC) as user_seq
+	         FROM mb_tb 
+       
+   			<include refid="usersearch"></include>
+     		) DS
+    	WHERE user_seq BETWEEN #{rowStart} AND #{rowEnd}
+	</select>
+
+	<!-- 목록 검색 카운트 기능 -->  
+	<select id="userlistSearchCount" resultType="int">
+		<![CDATA[  
+		select count(mb_id) 
+		from mb_tb
+		]]>
+		<include refid="usersearch"></include>
+	</select>
+	
+	<!-- 관리자 유저 삭제 기능 -->
+	<delete id="userDelete" parameterType="String">
+		delete from mb_tb
+		where mb_id = #{mb_id}
+	</delete>
+
+	<!-- 관리자가 회원목록 보기 -->
+	<select id="userInfo" parameterType="String" resultType="MemberVO">
+		select mb_name, mb_id, mb_addr, mb_addr_d, mb_phone 
+		from mb_tb 
+		where mb_id = #{mb_id}
+	</select>
+	
+	<!-- 관리자가 유저 정보수정 -->
+	<update id="userModify" parameterType="MemberVO">
+		update mb_tb  
+		set mb_password = #{mb_password}
+		where mb_id = #{mb_id}
+	</update>
+	
+	<!-- 유저 주문정보 -->
+	<!-- 주문목록 -->
+	<select id="orderList" parameterType="int" resultType="OrderVO">
+		select od_num, mb_id, od_name, od_price, od_date
+		from order_tb
+	</select>
+	
+	<!-- 주문상세정보 -->
+	<select id="readOrder" parameterType="int" resultType="OrderListVO">
+		select o.od_num, o.mb_id, o.od_name, o.od_zipcode,
+			o.od_addr, o.od_addr_d, o.od_phone, o.od_price, o.od_date,
+			d.pd_num, p.pd_amount, p.pd_name, p.pd_img
+		from order_tb o
+			inner join detailorder_tb d
+				on o.od_num = d.od_num
+			inner join product_tb p
+				on d.pd_num = p.pd_num 
+		where o.od_num = #{od_num}
+	</select>
+	
+	<!-- 주문자 정보 -->
+	<select id="getOrder" parameterType="int" resultType="OrderVO">
+		select od_num, mb_id, od_name, od_zipcode, od_addr, od_addr_d, od_phone, od_price, od_date
+		from order_tb
+		where od_num=#{od_num}
+	</select>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteOrder" parameterType="int">
+		delete od_num, mb_id, od_name, od_zipcode, od_addr, od_addr_d, od_phone, od_price, od_date
+		from order_tb
+		where od_num = #{od_num}
+	</delete>
+
+</mapper>

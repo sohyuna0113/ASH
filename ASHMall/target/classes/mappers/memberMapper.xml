@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ashmall.mappers.MemberMapper">
+
+	<select id="getTime" resultType="String">
+	select sysdate from dual
+	</select>
+
+<!-- 소문자 변환 ctrl + shift + Y -->
+<!-- Member VO --> 
+	<select id="readUserInfo" parameterType="string" resultType="MemberVO">
+	select mb_id, mb_name, mb_password, mb_email, mb_zipcode, mb_addr, mb_addr_d, 
+		mb_phone, mb_nickname, mb_accept_e, mb_point, mb_join, mb_update, mb_login
+	from mb_tb
+	where mb_id = #{mb_id}
+	</select>
+	
+<!-- Login(Member DTO를 가져옴) 비밀번호에 파라미터 사용하지x -->
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+	select mb_id, mb_name, mb_password, mb_nickname, mb_point, mb_update
+	from mb_tb
+	where mb_id = #{mb_id}
+	</select>
+	
+<!-- Login Update -->
+	<update id="loginUpdate" parameterType="string">
+	update mb_tb
+	set mb_update = sysdate
+	where mb_id = #{mb_id}
+	</update>
+
+<!-- 회원가입 -->
+<!-- parameterType="com.ashmall.domain.MemberVO
+		mybatis-config.xml에서 패키지명 설정작업으로 생략가능  -->
+	<insert id="join" parameterType="MemberVO">
+	insert into mb_tb(mb_id, mb_name, mb_password, mb_email, mb_zipcode, mb_addr, mb_addr_d, mb_phone, mb_nickname)
+	values(#{mb_id}, #{mb_name}, #{mb_password}, #{mb_email}, #{mb_zipcode}, #{mb_addr}, #{mb_addr_d}, #{mb_phone}, #{mb_nickname})
+	</insert>
+
+<!-- 아이디 중복체크 (String으로 타입변환 확인)--> 
+	<select id="checkIdDuplicate" parameterType="string" resultType="int">
+	select count(*)
+	from mb_tb
+	where mb_id = #{mb_id}
+	</select>
+
+<!-- 회원정보 수정 -->
+	<update id="modifyUserInfo" parameterType="MemberVO">
+	update mb_tb
+	set mb_name=#{mb_name}, mb_email=#{mb_email}, 
+	mb_zipcode=#{mb_zipcode}, mb_addr=#{mb_addr}, mb_addr_d=#{mb_addr_d}, mb_phone=#{mb_phone}, 
+	mb_nickname=#{mb_nickname}, mb_update=sysdate
+	where mb_id =#{mb_id}	
+	</update>
+
+<!-- 비밀번호 변경 -->
+	<update id="changePw" parameterType="MemberDTO">
+	update mb_tb
+	set mb_password=#{mb_password}
+	where mb_id=#{mb_id}	
+	</update>
+
+<!-- 회원 탈퇴 -->
+	<delete id="deleteUser" parameterType="string">
+	delete from mb_tb
+	where mb_id=#{mb_id}
+	</delete>
+	
+<!-- 로그인 정보 쿠키 저장 -->
+	<update id="saveCookie" parameterType="Map">
+	update mb_tb
+	set mb_session_key=#{mb_session_key},
+		mb_session_limit=#{mb_session_limit}
+	where mb_id=#{mb_id}
+	</update>
+
+<!-- 쿠키에 저장된 세션값으로 로그인 정보 가져옴 -->
+	<select id="checkUserSession" parameterType="string" resultType="MemberVO">
+	select *
+	from tbl_user
+	where mb_session_key=#{value} and mb_session_limit > now()
+	</select>
+
+</mapper>
