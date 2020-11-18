@@ -109,8 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 상품 삭제 -->
 	<delete id="deleteOrder" parameterType="int">
-		delete od_num, mb_id, od_name, od_zipcode, od_addr, od_addr_d, od_phone, od_price, od_date
-		from order_tb
+		delete from order_tb
 		where od_num = #{od_num}
 	</delete>
 

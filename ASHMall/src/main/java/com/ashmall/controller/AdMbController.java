@@ -14,24 +14,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.ashmall.domain.AdminVO;
 import com.ashmall.domain.MemberVO;
-import com.ashmall.domain.OrderDetailVO;
+
 import com.ashmall.domain.OrderListVO;
 import com.ashmall.domain.OrderVO;
-import com.ashmall.dto.AdminDTO;
-import com.ashmall.dto.MemberDTO;
+
 import com.ashmall.service.AdminService;
-import com.ashmall.service.OrderService;
+
 import com.ashmall.util.PageMaker;
 import com.ashmall.util.SearchCriteria;
 
@@ -175,20 +171,26 @@ public class AdMbController {
 		
 	}
 	
-	// 주문 삭제 
+	@ResponseBody
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
-	public String deleteOrder(@RequestParam("od_num")int od_num, RedirectAttributes redirect) throws Exception {
+	public ResponseEntity<String> deleteOrder(int od_num) throws Exception {
 		
 		logger.info("=====delete() execute"); 
-
-		service.deleteOrder(od_num);
 		
-		return "redirect:/admin/member/userOrder";
-	}
+		ResponseEntity<String> entity = null;
+		
+		try {
+			service.deleteOrder(od_num);
+			entity = new ResponseEntity<String>(HttpStatus.OK);
+			} catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
 	
+		return entity;
+	}
+
 }
-
-
 
 
 

@@ -97,6 +97,7 @@ public class AdminDAOImpl implements AdminDAO {
 		return session.selectOne(NS + ".getOrder", od_num);
 	}
 
+	// 주문 삭제 
 	@Override
 	public void deleteOrder(int od_num) throws Exception {
 		session.delete(NS + ".deleteOrder", od_num);

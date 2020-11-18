@@ -18,12 +18,29 @@ $(document).ready(function(){
 		
 		var od_num = $(this).text();
 		var curtr = $(this).parent();
-		
+	
 		getorderList("/admin/member/readOrder/"+od_num, curtr);
 	});
 	
-});	
+	/* 상품 리스트 - 삭제 버튼 클릭 시 */
+	$("button[name=btn_delete]").on("click", function() {
+		
+		var od_num = $(this).val();
+			$.ajax({
+				url : "/admin/member/delete",
+				type : "post",
+				data : {
+					od_num : od_num
+				},
+				dataType : "text",
+				success : function(data) {
+					location.href = "/admin/member/userOrder";
+				}
+			});
+	
+	});
 
+});	
 
 function getorderList(pageInfo, curtr) {
 	$.getJSON(pageInfo, function(data) {
@@ -132,14 +149,12 @@ var printData = function(replyArr, target, templateObject) {
 											<!-- 상품 전시(보임/숨김)기능 -->
 											<td class="col-md-2">${orderList.od_date}</td>
 											<td class="col-md-2">
-												<form class="deleteForm" method="post"
-													action="/admin/member/delete">
+												<form>
 													<!-- 상품 코드 -->
-													<input type="hidden" name="od_num"
-														value="${orderList.od_num}">
+													<!--  <input type="hidden" name="od_num"
+														value="${orderList.od_num}">  -->
 													<!-- 삭제기능  -->
-													<button type="button" name="btn_delete" class="btn btn-default" value="CANCEL">CANCEL</button>
-											
+													<button type="button" name="btn_delete" class="btn btn-default" value="${orderList.od_num}">CANCEL</button>
 												</form>
 											</td>
 										</tr>
