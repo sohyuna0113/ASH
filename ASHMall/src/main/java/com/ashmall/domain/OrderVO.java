@@ -26,6 +26,16 @@ public class OrderVO {
 	private int		od_price;
 	private Date	od_date;
 	
+	// 추가
+	private String	delivery;
+	
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
+	
 	/* Getter and Setter */
 	public int getOd_num() {
 		return od_num;
@@ -87,8 +97,7 @@ public class OrderVO {
 	public String toString() {
 		return "OrderVO [od_num=" + od_num + ", mb_id=" + mb_id + ", od_name=" + od_name + ", od_zipcode=" + od_zipcode
 				+ ", od_addr=" + od_addr + ", od_addr_d=" + od_addr_d + ", od_phone=" + od_phone + ", od_price="
-				+ od_price + ", od_date=" + od_date + "]";
+				+ od_price + ", od_date=" + od_date + ", delivery=" + delivery + "]";
 	}
-	
 	
 }

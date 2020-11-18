@@ -47,7 +47,7 @@
 							<%-- 주문내역 상단 버튼 --%>
 							<div class="orderList" style="padding: 0px 40px;">
 								<div style="width:100%;">
-									<span style="display: inline-block; float: left; margin:20px 10px 5px 0px;">[O R D E R]</span>
+									<span style="display: inline-block; float: left; margin:20px 10px 5px 0px;">[주문내역]</span>
 									<div class="btn-container" style="display: inline-block; float: right; margin:20px 10px 5px 5px;">
 										<button id="btn_delete_check"  class="btn btn-default" type="button">선택 상품 삭제</button>
 									</div>
@@ -79,7 +79,7 @@
 										<tr id="productVO_${productVO.pd_num}" class="productRow">
 											<td class="col-md-1">
 												<input type="checkbox" name="check" class="check" value="${productVO.pd_num}" checked="checked" >
-												<input type="hidden" id="amount_${productVO.pd_num}" name="orderDetailList[${i.index}].od_amount" value="${amountList[i.index]}" />
+												<input type="hidden" id="amount_${productVO.pd_num}" name="orderDetailList[${i.index}].pd_amount" value="${amountList[i.index]}" />
 												<input type="hidden" name="orderDetailList[${i.index}].pd_num" value="${productVO.pd_num}" />
 												<input type="hidden" name="orderDetailList[${i.index}].od_price" value="${productVO.pd_dc}" />
 											</td>
@@ -105,7 +105,7 @@
 												<input type="hidden" name="amount" value="${amountList[i.index]}" /> 
 											</td>
 											<td class="col-md-1">
-												<p><fmt:formatNumber value="${productVO.pd_dc * amountList[i.index]}"  pattern="###,###,###" /></p>
+												<p><fmt:formatNumber value="${productVO.pd_price}"  pattern="###,###,###" /></p>
 											</td>
 										</tr>
 									</c:forEach>
@@ -176,7 +176,7 @@
 												<td class="col-md-1"><label>결제 예정 금액</label></td>
 												<td class="col-md-1" style="height:30px; text-align: center;">
 													<label><p id="totalDiscount">0</p></label>
-													<input type="hidden" id="od_price" name="od_price" value="0"/>
+													<input type="hidden" id="totalPrice" name="totalPrice" value="0"/>
 												</td>
 											</tr>
 											<tr>

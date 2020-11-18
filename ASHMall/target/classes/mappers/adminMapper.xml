@@ -83,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 유저 주문정보 -->
 	<!-- 주문목록 -->
 	<select id="orderList" parameterType="int" resultType="OrderVO">
-		select od_num, mb_id, od_name, od_price, od_date
+		select od_num, mb_id, od_name, od_price, od_date, delivery
 		from order_tb
 	</select>
 	
@@ -91,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="readOrder" parameterType="int" resultType="OrderListVO">
 		select o.od_num, o.mb_id, o.od_name, o.od_zipcode,
 			o.od_addr, o.od_addr_d, o.od_phone, o.od_price, o.od_date,
-			d.pd_num, p.pd_amount, p.pd_name, p.pd_img
+			d.pd_num, p.pd_amount, p.pd_name, p.pd_img, o.delivery
 		from order_tb o
 			inner join detailorder_tb d
 				on o.od_num = d.od_num
@@ -102,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 주문자 정보 -->
 	<select id="getOrder" parameterType="int" resultType="OrderVO">
-		select od_num, mb_id, od_name, od_zipcode, od_addr, od_addr_d, od_phone, od_price, od_date
+		select od_num, mb_id, od_name, od_zipcode, od_addr, od_addr_d, od_phone, od_price, od_date, delivery
 		from order_tb
 		where od_num=#{od_num}
 	</select>

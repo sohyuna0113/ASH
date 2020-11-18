@@ -26,12 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 주문목록 -->
 	<select id="orderList" parameterType="string" resultType="OrderListVO">
-		select p.pd_img, p.pd_name, d.od_num, d.pd_num, d.od_amount, d.od_price, o.od_date
+		select p.pd_img, p.pd_name, d.od_num, d.pd_num, d.od_amount, d.od_price, o.od_date, o.delivery
 		from detailorder_tb d
 		inner join order_tb o
 			on d.od_num = o.od_num
 		inner join product_tb p
 			on d.pd_num = p.pd_num
+        inner join detailorder_tb
+            on d.od_price = p.pd_price
 		where o.mb_id = #{mb_id}
 		order by d.od_num desc, d.pd_num desc
 	</select>

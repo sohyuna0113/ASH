@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
+
 <html>
 <%@include file="/WEB-INF/views/admin/include/head.jsp" %>
 <%@ include file="/WEB-INF/views/admin/include/plugins.jsp" %>
 <head>
 <%-- 버튼 클릭 이벤트 메소드 --%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() 
 {
@@ -84,8 +87,8 @@ $(document).ready(function()
 				<th>PHONE</th>
 				<th>DEL</th>
 				</tr>
-
-			<c:forEach items="${orderList}" var="memberVO">
+			
+			<c:forEach items="${userList}" var="memberVO">
 				<tr>
 					<td class="col-md-1"><input type="checkbox"></td>
 					<td class="col-md-2">
@@ -96,7 +99,7 @@ $(document).ready(function()
 					<input type="button" class="deldel" data-mb_id="${memberVO.mb_id}" value="DEL"></td>
 				</tr>
 			</c:forEach>
-				
+		
 				<tr align="center">
 					<td colspan="6" align="center" style="height: 80px; text-align: center; margin: 0 auto; background-color: #f2f2f2; border-radius: 10px;">
 											<!-- 페이징 기능 -->
@@ -131,13 +134,13 @@ $(document).ready(function()
 			<div style="display: inline-block; float: none; margin-left:15px;">
 				<select name="searchType" style="width:180px; height:26px;">
 					<option value="all"
-					<c:out value="${cri.searchType == null ? 'selected':''}"/>>-
+					<c:out value="${cri.searchType == null ? 'selected':''}"/>>Search
 					</option>
 					<option value="n"
-					<c:out value="${cri.searchType eq 'n'?'selected':''}"/>>N A M E
+					<c:out value="${cri.searchType eq 'n'?'selected':''}"/>>Name
 					</option>
 					<option value="i"
-					<c:out value="${cri.searchType eq 'i'?'selected':''}"/>>I D
+					<c:out value="${cri.searchType eq 'i'?'selected':''}"/>>ID
 					</option>
 				</select> 
 		      

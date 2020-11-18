@@ -179,7 +179,7 @@
 												<td class="col-md-1"><label>결제 예정 금액</label></td>
 												<td class="col-md-1" style="height:30px; text-align: center;">
 													<label><p id="totalDiscount">0</p></label>
-													<input type="hidden" id="od_price" name="od_price" value="0"/>
+													<input type="hidden" id="totalPrice" name="totalPrice" value="0"/>
 												</td>
 											</tr>
 											<tr>

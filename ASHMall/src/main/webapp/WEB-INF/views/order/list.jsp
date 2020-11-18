@@ -69,23 +69,23 @@
 								<%-- 상품이 존재하는 경우,  리스트 출력 --%>
 								<c:forEach items="${orderList}" var="orderVO" varStatus="status">
 									<c:if test="${status.index eq 0 || orderVO.od_num ne code}">
-									<tr style="background-color: aliceBlue;" >
-										<td colspan="5" style="text-align:left;">
+									<tr style="background-color: white;" >
+										<td colspan="10" style="text-align:center;">
 											<b>DATE OF ORDER: <fmt:formatDate value="${orderVO.od_date}" pattern="yyyy/MM/dd HH:mm:ss"/>
 											(ORDER NUMBER: ${orderVO.od_num} ) </b>
-										</td>
-										<td> 
+										
 											<button class="btn btn-primary" onclick="location.href='/order/read?od_num=${orderVO.od_num}';">
-											ORDER DETAIL</button> 
+											ORDER DETAIL</button>
 										</td>
-									<tr>
+									</tr>
+									
 									<tr style="background-color: whitesmoke;">
-										<td>IMAGE</td>
-										<td>NAME</td>
-										<td>PRICE</td>
-										<td>AMOUNT</td>
-										<td>TOTAL</td>
-										<td>REVIEW</td>
+										<td></td>
+										<td>Name</td>
+										<td>Price</td>
+										<td>Amount</td>
+										<td>Review</td>
+										<td>Status</td>
 									</tr>
 									</c:if>
 									<c:set var="code" value="${orderVO.od_num}">	</c:set>
@@ -99,22 +99,23 @@
 											<a href="/product/read?pd_num=${orderVO.pd_num}"
 												style="color: black;"> ${orderVO.pd_name} </a>
 										</td>
-										<td class="col-md-1">
-											<fmt:formatNumber value="${orderVO.od_price}" pattern="###,###,###" />
-											
-										<td class="col-md-1">
-											<p>${orderVO.od_amount}</p>
-										</td>
-										<td class="col-md-1">
-											<fmt:formatNumber value="${orderVO.od_price * orderVO.od_amount}" pattern="###,###,###" />
-										</td>
 										<td class="col-md-2">
+											<fmt:formatNumber value="${orderVO.od_price}" pattern="" />
+											
+										<td class="col-md-2">
+											<fmt:formatNumber value="${orderVO.od_price * orderVO.od_amount}" pattern="" />
+										</td>
+										<td class="col-md-3">
 											
 											<button type="button" class="btn btn-flat" 
-												onclick="location.href='/product/read?pd_num=${orderVO.pd_num}';" value="${orderVO.pd_num}" >WRITE REVIEW</button>
+												onclick="location.href='/product/read?pd_num=${orderVO.pd_num}';" value="${orderVO.pd_num}" >Write Review</button>
+										</td>
+										<td class="col-md-3">
+											<p>${orderVO.delivery}</p>
 										</td>
 									</tr>
 								</c:forEach>
+								
 							</table>
 						</div>
 					</div>

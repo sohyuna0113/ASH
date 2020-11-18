@@ -74,7 +74,7 @@ var updatePrice = function(){
 	
 	$("#totalPrice").html(numberFormat(totalPrice) + "");
 	$("#totalDiscount").html(numberFormat(totalDiscount) + "");
-	$("#od_price").val(totalDiscount);
+	$("#od_price").val(totalPrice);
 };
 
 /* 숫자 콤마 설정 */

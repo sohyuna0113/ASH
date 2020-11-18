@@ -19,6 +19,7 @@ public class OrderListVO {
 	private String 	od_addr;
 	private String	od_addr_d;
 	private String 	od_phone;
+	private String 	delivery;
 	
 	/* Getter and Setter */
 	public String getPd_img() {
@@ -99,6 +100,12 @@ public class OrderListVO {
 	public void setOd_phone(String od_phone) {
 		this.od_phone = od_phone;
 	}
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
 	
 	/* toString() */
 	@Override
@@ -106,7 +113,7 @@ public class OrderListVO {
 		return "OrderListVO [pd_img=" + pd_img + ", pd_name=" + pd_name + ", od_num=" + od_num + ", pd_num=" + pd_num
 				+ ", od_amount=" + od_amount + ", od_price=" + od_price + ", od_date=" + od_date + ", mb_id=" + mb_id
 				+ ", od_name=" + od_name + ", od_zipcode=" + od_zipcode + ", od_addr=" + od_addr + ", od_addr_d="
-				+ od_addr_d + ", od_phone=" + od_phone + "]";
+				+ od_addr_d + ", od_phone=" + od_phone + ", delivery=" + delivery + "]";
 	}
-	
+
 }
