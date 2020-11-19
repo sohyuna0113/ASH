@@ -162,7 +162,7 @@
 				<%= application.getRealPath("/") %>
 				--%>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Back to List </a></li>
+					<li><a href="/"><i class="fa fa-dashboard"></i> Back to Main </a></li>
 					<li class="active"> Product Detail </li>	
 				</ol>
 			</section>
@@ -226,6 +226,7 @@
 								<br>
 								
 								<%-- 상품 후기 --%>
+								<c:if test="${sessionScope.user != null}">
 								<div class='popup back' style="display:none;"></div>
 							    <div id="popup_front" class='popup front' style="display:none;">
 							     	<img id="popup_img">
@@ -279,7 +280,7 @@
 											<ul id="pagination" class="pagination pagination-sm no-margin "></ul>
 									 	</div>
 									 </div>
-									 
+									
 									 
 									 <%-- Modal : 상품후기 수정/삭제 팝업 --%>
 									<div id="modifyModal" class="modal modal-primary fade" role="dialog" style="position:fixed">
@@ -309,7 +310,7 @@
 									  </div>
 									</div>      
 							</div>
-							
+							</c:if>
 							
 							<!-- /.box-body -->
 

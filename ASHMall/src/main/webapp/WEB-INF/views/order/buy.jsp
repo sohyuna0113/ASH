@@ -25,7 +25,7 @@
   <!-- Page Content -->
   <div class="container">
 	  <!-- 카테고리 메뉴  --> 
-      <div style="margin-top:90px" class="col-lg-3">
+      <div class="col-lg-3">
 		<%@ include file="/WEB-INF/views/common/category.jsp" %>
       </div>
       <!-- /.col-lg-3 -->
@@ -91,6 +91,10 @@
 											<td class="col-md-2">
 												<a href="/product/read?pd_num=${productVO.pd_num}&categ_now=${categ_now}"
 													style="color: black;"> ${productVO.pd_name} </a>
+											</td>
+											<td class="col-md-1">
+												<p><fmt:formatNumber value="${productVO.pd_amount}" pattern="###,###,###" /></p>
+													<input type="hidden" name="amount" value="${productVO.pd_amount}" />
 											</td>
 											<td class="col-md-1">
 												<p><fmt:formatNumber value="${productVO.pd_price}" pattern="###,###,###" /></p>
@@ -175,8 +179,8 @@
 											<tr>
 												<td class="col-md-1"><label>결제 예정 금액</label></td>
 												<td class="col-md-1" style="height:30px; text-align: center;">
-													<label><p id="totalDiscount">0</p></label>
-													<input type="hidden" id="totalPrice" name="totalPrice" value="0"/>
+													<label><p id="totalPrice">0</p></label>
+													<input type="hidden" id="od_price" name="od_price" value="0"/>
 												</td>
 											</tr>
 											<tr>

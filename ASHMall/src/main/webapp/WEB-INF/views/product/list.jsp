@@ -58,7 +58,7 @@
 	<div class="wrapper">
 
 	  <!-- 카테고리 메뉴  --> 
-      <div style="margin-top:90px" class="col-lg-3">
+      <div class="col-lg-3">
 		
 		<%@ include file="/WEB-INF/views/common/category.jsp" %>
 
@@ -66,7 +66,7 @@
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
-		<a href="#"><img src="/dist/img/dia00.jpg" style="padding:50px 180px; postion:fixed"></a>
+		<a href="#"><img src="/dist/img/dia00.jpg" style="padding:50px 200px; postion:fixed"></a>
 		</div>
 		
 			<div class="content-wrapper">

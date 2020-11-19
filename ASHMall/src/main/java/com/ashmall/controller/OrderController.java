@@ -46,7 +46,7 @@ public class OrderController {
 	*/
 	
 	@RequestMapping(value="buy", method=RequestMethod.GET)
-	public void buyGET(@RequestParam int pd_amount,
+	public void buyGET(@RequestParam int od_amount,
 						@RequestParam int pd_num, Model model, HttpSession session) throws Exception{
 		
 		logger.info("=====buyGET() execute...");
@@ -55,7 +55,7 @@ public class OrderController {
 		List<Integer> amountList = new ArrayList<Integer>();
 		
 		productList.add(productService.readProduct(pd_num));
-		amountList.add(pd_amount);
+		amountList.add(od_amount);
 		
 		model.addAttribute("productList", productList);
 		model.addAttribute("amountList", amountList);

@@ -68,7 +68,7 @@ var updatePrice = function(){
 		var amount=$(this).find("input[name='amount']").val();
 		
 		totalPrice += price * amount;
-		totalDiscount += price * amount;
+		totalDiscount += discount * amount;
 		
 	});
 	

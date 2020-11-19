@@ -27,7 +27,7 @@
     <div class="row">
 
 	  <!-- 카테고리 메뉴  --> 
-      <div style="margin-top:90px" class="col-lg-3">
+      <div class="col-lg-3">
 		
 	<%@ include file="/WEB-INF/views/common/category.jsp" %>
 

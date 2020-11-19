@@ -62,7 +62,7 @@ public class ProductController {
 	 */
 	
 	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void subCGListPOST(@ModelAttribute("cri") Criteria cri,
+	public void subCGListGET(@ModelAttribute("cri") Criteria cri,
 			 				@ModelAttribute("categ_now") String categ_now,
 			 				Model model) throws Exception {
 		
@@ -74,6 +74,9 @@ public class ProductController {
 		
 
 		List<ProductVO> list = service.productListCG(map);
+	    	for(int i = 0; i < list.size(); i++)
+	    		logger.info(list.get(i).toString());
+		
 		model.addAttribute("productList", service.productListCG(map));
 		model.addAttribute("categ_name", service.getCg_name(categ_now));
 		
@@ -87,44 +90,6 @@ public class ProductController {
 		model.addAttribute("pm", pm);
 		
 	}
-		/*
-		logger.info("=====subCGListGET() execute...");
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("categ_now", categ_now);
-		// 페이징 정보 <mapper 파일의 between 1과 10>
-		map.put("rowStart", cri.getRowStart());
-		map.put("rowEnd", cri.getRowEnd());
-		
-
-		model.addAttribute("productList", service.productListCG(map));
-		model.addAttribute("categ_name", service.getCg_name(categ_now));
-		// 카테고리 이름
-			
-		// 카테고리에 해당하는 상품 리스트
-		List<ProductVO> list = service.productListCG(map);
-	    for(int i = 0; i < list.size(); i++)
-	    logger.info(list.get(i).toString());
-		
-		// PageMake생성
-		PageMaker pm = new PageMaker();
-		pm.setCri(cri);
-		int count = service.productCount(categ_now);
-		pm.setTotalCount(count);
-
-		model.addAttribute("pm", pm);
-		/*
-		// 2차 카테고리 리스트
-		ResponseEntity<List<CategoryVO>> entity = null;
-		try {
-			logger.info("====="+service.subCGList(categ_now));
-			entity = new ResponseEntity<List<CategoryVO>>(service.subCGList(categ_now), HttpStatus.OK);		
-		} catch(Exception e) {	
-			entity = new ResponseEntity<List<CategoryVO>>(HttpStatus.BAD_REQUEST);
-		}
-		
-	}
-		*/
 	
 	/* 
 	// ProductController.java
@@ -132,41 +97,6 @@ public class ProductController {
 	 * SearchCriteria를 매개변수로 받는다
 	 */
 	
-	/* 카테고리에 해당하는 상품 리스트 출력 
-	@RequestMapping(value="list", method=RequestMethod.GET)
-	public void list(@ModelAttribute("cri") Criteria cri,
-					 @ModelAttribute("categ_now") String categ_now,
-					 Model model) throws Exception {
-		
-		logger.info("=====list() executed...");
-		logger.info(model.toString());
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("categ_now", categ_now);
-		// 페이징 정보 <mapper 파일의 between 1과 10>
-		map.put("rowStart", cri.getRowStart());
-		map.put("rowEnd", cri.getRowEnd());
-		
-
-		model.addAttribute("productList", service.productListCG(map));
-		model.addAttribute("categ_name", service.getCg_name(categ_now));
-		// 카테고리 이름
-			
-		// 카테고리에 해당하는 상품 리스트
-		List<ProductVO> list = service.productListCG(map);
-	    for(int i = 0; i < list.size(); i++)
-	    logger.info(list.get(i).toString());
-		
-		// PageMake생성
-		PageMaker pm = new PageMaker();
-		pm.setCri(cri);
-		int count = service.productCount(categ_now);
-		pm.setTotalCount(count);
-
-		model.addAttribute("pm", pm);
-		
-	}
-	*/
 	/* 검색 조건에 해당하는 상품 리스트 출력 */
 	@RequestMapping(value="listSearch", method=RequestMethod.GET)
 	public void listSearch(@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
