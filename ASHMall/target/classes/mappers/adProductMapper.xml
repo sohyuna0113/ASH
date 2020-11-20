@@ -119,4 +119,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where pd_num = #{pd_num}
 	</update>
 	
+	<!-- 배송 상태 -->
+	<update id="delivery">
+ 		update order_tb
+    	set delivery = #{delivery}
+ 		here od_num=#{od_num}
+	</update>
 </mapper>

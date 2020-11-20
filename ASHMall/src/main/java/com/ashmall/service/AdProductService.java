@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ashmall.domain.CategoryVO;
+import com.ashmall.domain.OrderVO;
 import com.ashmall.domain.ProductVO;
 import com.ashmall.util.SearchCriteria;
 
@@ -38,4 +39,7 @@ public interface AdProductService {
 	
 	// 상품 수량 조절 
 	public void changeStock(ProductVO vo) throws Exception;
+	
+	// 배송 상태
+	public void delivery(OrderVO vo) throws Exception;
 }

@@ -123,7 +123,7 @@ public class AdProductController {
 	}
 
 	/*
-		상품 상세(ckEditor)-파일 업로
+		상품 상세(ckEditor)-파일 업로드 
 		웹 프로젝트 영역 상의 폴더안에 업로드
 
 		@Params
@@ -389,7 +389,7 @@ public class AdProductController {
 	@RequestMapping(value="/list", method=RequestMethod.POST)
 	public String delivery(OrderVO vo) throws Exception {
 		
-		AdminService.delivery(vo);
+		service.delivery(vo);
 		
 		return "redirect:/admin/product/list";
 		

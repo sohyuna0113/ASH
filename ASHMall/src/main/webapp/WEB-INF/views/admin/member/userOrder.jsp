@@ -87,7 +87,24 @@ var printData = function(replyArr, target, templateObject) {
 		</div>
 	{{/each}}
 </script>
-
+ 
+ <script>
+   $(".delivery1_btn").click(function(){
+    $(".delivery").val("SHIPPED");
+    run();
+   });
+   
+   $(".delivery2_btn").click(function(){
+    $(".delivery").val("DELIVERED");
+    run();
+    
+   });
+   
+   function run(){
+    $(".deliveryForm").submit();
+   }
+  
+  </script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -127,6 +144,7 @@ var printData = function(replyArr, target, templateObject) {
 							<th> NAME </th>
 							<th> PRICE </th>
 							<th> DATE </th>
+							<th> STATUS </th>
 							<th> DELETE </th>
 						</tr>
 					
@@ -148,6 +166,10 @@ var printData = function(replyArr, target, templateObject) {
 											<td class="col-md-2">${orderList.od_price}</td>
 											<!-- 상품 전시(보임/숨김)기능 -->
 											<td class="col-md-2">${orderList.od_date}</td>
+											<div class="deliveryChange">
+												<button type="button" class="delivery1_btn">SHIPPED</button>
+												<button type="button" class="delivery2_btn">DELIVERED</button>
+											</div>
 											<td class="col-md-2">
 												<form>
 													<!-- 상품 코드 -->

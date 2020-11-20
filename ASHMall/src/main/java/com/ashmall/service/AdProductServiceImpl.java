@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ashmall.domain.CategoryVO;
+import com.ashmall.domain.OrderVO;
 import com.ashmall.domain.ProductVO;
 import com.ashmall.persistence.AdProductDAO;
 import com.ashmall.util.SearchCriteria;
@@ -77,6 +78,13 @@ public class AdProductServiceImpl implements AdProductService {
 	@Override
 	public void changeStock(ProductVO vo) throws Exception {
 		dao.changeStock(vo);
+	}
+
+	// 배송 상태
+	@Override
+	public void delivery(OrderVO vo) throws Exception {
+		dao.delivery(vo);
+		
 	}
 
 }

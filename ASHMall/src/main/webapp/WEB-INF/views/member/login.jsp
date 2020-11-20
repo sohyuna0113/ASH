@@ -71,9 +71,15 @@
  <!-- Page Content -->
  <div class="container">
    <div class="row">
-     <div class="col-lg-3">
 
-     </div>
+
+	  <!-- 카테고리 메뉴  --> 
+      <div class="col-lg-3">
+		
+		<%@ include file="/WEB-INF/views/common/category.jsp" %>
+
+      </div>
+
       <!-- /.col-lg-3 -->
       <div class="col-lg-9">
 	

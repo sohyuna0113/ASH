@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ashmall.domain.CategoryVO;
+import com.ashmall.domain.OrderVO;
 import com.ashmall.domain.ProductVO;
 import com.ashmall.util.SearchCriteria;
 
@@ -77,6 +78,13 @@ public class AdProductImpl implements AdProductDAO {
 	@Override
 	public void changeStock(ProductVO vo) throws Exception {
 		session.update(NS+ ".changeStock", vo);
+		
+	}
+
+	// 배송 상태
+	@Override
+	public void delivery(OrderVO vo) throws Exception {
+		session.update(NS +".delivery", vo);
 		
 	}
 
