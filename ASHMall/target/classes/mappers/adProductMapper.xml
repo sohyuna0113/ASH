@@ -111,5 +111,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set pd_amount=#{pd_amount}, pd_buy=#{pd_buy}, pd_update=sysdate
 		where pd_num=#{pd_num}
 	</update>
+		
+	<!-- 상품재고처리 -->
+	<update id="changeStock">
+ 		update product_tb
+     	set pd_amount = pd_amount - #{pd_amount}
+ 		where pd_num = #{pd_num}
+	</update>
 	
 </mapper>

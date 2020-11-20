@@ -30,8 +30,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ashmall.domain.CategoryVO;
+import com.ashmall.domain.OrderVO;
 import com.ashmall.domain.ProductVO;
 import com.ashmall.service.AdProductService;
+import com.ashmall.service.AdminService;
 import com.ashmall.util.FileUtils;
 import com.ashmall.util.PageMaker;
 import com.ashmall.util.SearchCriteria;
@@ -384,6 +386,13 @@ public class AdProductController {
 
 	}
 	
-	
+	@RequestMapping(value="/list", method=RequestMethod.POST)
+	public String delivery(OrderVO vo) throws Exception {
+		
+		AdminService.delivery(vo);
+		
+		return "redirect:/admin/product/list";
+		
+	}
 }
 

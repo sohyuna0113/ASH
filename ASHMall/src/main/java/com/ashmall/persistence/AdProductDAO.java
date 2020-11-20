@@ -36,4 +36,6 @@ public interface AdProductDAO {
 	// 선택한 상품 수정
 	public void editChecked(Map<String, Object> map) throws Exception;
 	
+	// 상품 수량 조절 
+	public void changeStock(ProductVO vo) throws Exception;
 }

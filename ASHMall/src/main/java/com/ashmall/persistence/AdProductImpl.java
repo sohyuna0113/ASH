@@ -73,5 +73,12 @@ public class AdProductImpl implements AdProductDAO {
 		session.update(NS+ ".editChecked", map);
 	}
 
+	// 상품 수량 조절 
+	@Override
+	public void changeStock(ProductVO vo) throws Exception {
+		session.update(NS+ ".changeStock", vo);
+		
+	}
+
 
 }

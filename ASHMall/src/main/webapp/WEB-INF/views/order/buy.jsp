@@ -53,7 +53,7 @@
 									</div>
 								</div>
 								<%-- 주문내역 테이블 --%>
-								<table class="table table-striped text-center" id="ordertbl">
+								<table class="table table-striped text-center" id="ordertb">
 									<thead id="thead">
 										<tr>
 											<th><input type="checkbox" id="checkAll" checked="checked"/></th>
@@ -93,17 +93,19 @@
 													style="color: black;"> ${productVO.pd_name} </a>
 											</td>
 											<td class="col-md-1">
-												<p><fmt:formatNumber value="${productVO.pd_amount}" pattern="###,###,###" /></p>
-													<input type="hidden" name="amount" value="${productVO.pd_amount}" />
-											</td>
-											<td class="col-md-1">
 												<p><fmt:formatNumber value="${productVO.pd_price}" pattern="###,###,###" /></p>
 												<input type="hidden" name="price" value="${productVO.pd_price}" />
 												<!-- 
 												<input type="hidden" id="price_${productVO.pd_num}" value="${productVO.pd_price}"  />  -->
+											</td>
 											<td class="col-md-1">
 												<p><fmt:formatNumber value="${productVO.pd_dc}" pattern="###,###,###" /></p>
-												<input type="hidden" name="discount" value="${productVO.pd_dc}" /> 
+												<input type="hidden" name="discount" value="${productVO.pd_dc}" />
+											</td>
+											<td class="col-md-1">
+												<p><fmt:formatNumber value="${productVO.pd_amount}" pattern="###,###,###" /></p>
+													<input type="hidden" name="amount" value="${productVO.pd_amount}" />
+											</td>
 											<td class="col-md-1">
 												<p>${amountList[i.index]}</p>
 												<input type="hidden" name="amount" value="${amountList[i.index]}" /> 

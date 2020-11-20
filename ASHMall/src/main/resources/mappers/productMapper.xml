@@ -86,7 +86,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				pd_submit, pd_update
 		 from product_tb
 		 where pd_num=#{pd_num}
-	
 	</select>
-	
+
 </mapper>

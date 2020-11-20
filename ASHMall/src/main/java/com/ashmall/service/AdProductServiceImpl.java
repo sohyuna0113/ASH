@@ -73,4 +73,10 @@ public class AdProductServiceImpl implements AdProductService {
 		dao.editChecked(map);
 	}
 
+	// 상품 수량 조절 
+	@Override
+	public void changeStock(ProductVO vo) throws Exception {
+		dao.changeStock(vo);
+	}
+
 }
