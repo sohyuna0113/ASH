@@ -166,10 +166,11 @@ var printData = function(replyArr, target, templateObject) {
 											<td class="col-md-2">${orderList.od_price}</td>
 											<!-- 상품 전시(보임/숨김)기능 -->
 											<td class="col-md-2">${orderList.od_date}</td>
-											<div class="deliveryChange">
+											
+											<td class="col-md-3 deliveryChange">
 												<button type="button" class="delivery1_btn">SHIPPED</button>
 												<button type="button" class="delivery2_btn">DELIVERED</button>
-											</div>
+											</td>
 											<td class="col-md-2">
 												<form>
 													<!-- 상품 코드 -->
