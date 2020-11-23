@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			on d.pd_num = p.pd_num
         inner join detailorder_tb
             on d.od_price = p.pd_price
-		where o.mb_id = #{mb_id}
+		where mb_id = #{mb_id}
 		order by d.od_num desc, d.pd_num desc
 	</select>
 
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from detailorder_tb d
 		inner join product_tb p
 			on d.pd_num = p.pd_num
-		where d.od_num = #{od_num}
+		where od_num = #{od_num}
 	</select>
 	
 	<!-- 주문자 정보 -->

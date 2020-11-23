@@ -386,12 +386,12 @@ public class AdProductController {
 
 	}
 	
-	@RequestMapping(value="/list", method=RequestMethod.POST)
+	@RequestMapping(value="/userOrder", method=RequestMethod.POST)
 	public String delivery(OrderVO vo) throws Exception {
 		
 		service.delivery(vo);
 		
-		return "redirect:/admin/product/list";
+		return "redirect:/admin/product/userOrder?n=" + vo.getMb_id();
 		
 	}
 }

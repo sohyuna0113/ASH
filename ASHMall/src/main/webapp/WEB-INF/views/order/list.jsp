@@ -23,21 +23,13 @@
   <%@ include file="/WEB-INF/views/common/top.jsp" %>
   <!-- Page Content -->
   <div class="container">
-
-    <div class="row">
-
 	  <!-- 카테고리 메뉴  --> 
       <div class="col-lg-3">
-		
 	<%@ include file="/WEB-INF/views/common/category.jsp" %>
-
       </div>
       <!-- /.col-lg-3 -->
 
-      <div class="col-lg-9">
-
 		<div class="content-wrapper">
-			
 			<section class="content-header">
 				<h1>
 				<small>O r d e r l i s t</small>
@@ -47,14 +39,13 @@
 					<li class="active">O R D E R</li>
 				</ol>
 			</section>
-
 			<%-- MAIN CONTENT --%>
 			<!-- Main content -->
 			<section class="content container-fluid">
-
 				<div class="row">
 					<!-- left column -->
 					<div class="box" style="border: none; padding: 10px 30px;">
+						<form>
 						<div class="box-body">
 							<table class="table text-center">
 								<%-- 상품이 존재하지 않는 경우 --%>
@@ -115,18 +106,17 @@
 										</td>
 									</tr>
 								</c:forEach>
-								
 							</table>
 						</div>
-					</div>
+					</form>
 				</div>
+				</div>	
 				<!--/.col (left) -->
 			</section>
 	 	 </div>
 	  </div>
-	</div>
-</div>
  <!-- Footer -->
  <%@ include file="/WEB-INF/views/common/bottom.jsp" %>
+ 
 </body>
 </html>

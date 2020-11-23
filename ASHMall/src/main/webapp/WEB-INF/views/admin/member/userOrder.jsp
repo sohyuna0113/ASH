@@ -88,7 +88,7 @@ var printData = function(replyArr, target, templateObject) {
 	{{/each}}
 </script>
  
- <script>
+<script>
    $(".delivery1_btn").click(function(){
     $(".delivery").val("SHIPPED");
     run();
@@ -103,8 +103,7 @@ var printData = function(replyArr, target, templateObject) {
    function run(){
     $(".deliveryForm").submit();
    }
-  
-  </script>
+</script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
