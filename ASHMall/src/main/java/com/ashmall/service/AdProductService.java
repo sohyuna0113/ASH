@@ -42,4 +42,5 @@ public interface AdProductService {
 	
 	// 배송 상태
 	public void delivery(OrderVO vo) throws Exception;
+	
 }

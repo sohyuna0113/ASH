@@ -125,4 +125,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	set delivery = #{delivery}
  		here od_num=#{od_num}
 	</update>
+	
 </mapper>

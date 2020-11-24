@@ -96,10 +96,6 @@
 													style="color: black;"> ${productVO.pd_name} </a>
 											</td>
 											<td class="col-md-1">
-												<p><fmt:formatNumber value="${productVO.pd_amount}" pattern="###,###,###" /></p>
-											<input type="hidden" name="amount" value="${productVO.pd_amount}" />
-											</td>
-											<td class="col-md-1">
 												<p><fmt:formatNumber value="${productVO.pd_price}" pattern="###,###,###" /></p>
 												<input type="hidden" name="price" value="${productVO.pd_price}" />
 												<!-- 
@@ -107,6 +103,12 @@
 											<td class="col-md-1">
 												<p><fmt:formatNumber value="${productVO.pd_dc}" pattern="###,###,###" /></p>
 												<input type="hidden" name="discount" value="${productVO.pd_dc}" /> 
+											</td>
+											<!--  
+											<td class="col-md-1">
+												<p><fmt:formatNumber value="${productVO.pd_amount}" pattern="###,###,###" /></p>
+											<input type="hidden" name="amount" value="${productVO.pd_amount}" />
+											</td> -->
 											<td class="col-md-1">
 												<p>${amountList[i.index]}</p>
 												<input type="hidden" name="amount" value="${amountList[i.index]}" /> 
