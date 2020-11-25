@@ -28,6 +28,7 @@ import com.ashmall.domain.MemberVO;
 import com.ashmall.domain.OrderDetailVO;
 import com.ashmall.domain.OrderListVO;
 import com.ashmall.domain.OrderVO;
+import com.ashmall.domain.ReviewVO;
 import com.ashmall.dto.AdminDTO;
 import com.ashmall.dto.MemberDTO;
 import com.ashmall.service.AdminService;
@@ -85,8 +86,25 @@ public class AdminController {
 		return "redirect:/admin/main";
 	}
 	
+	/* 모든 댓글 */ 
+	@RequestMapping(value="/allReply", method=RequestMethod.GET)
+	public void getAllReply(Model model) throws Exception {
+		logger.info("getAllReply execute");
 	
+		List<ReviewVO> reply = service.allReply();
+				
+		model.addAttribute("reply", reply);
+	}
 	
+	/* 모든 댓글 */
+	@RequestMapping(value="/allReply", method=RequestMethod.POST)
+	public String postAllReply(ReviewVO vo) throws Exception {
+		logger.info("postAllReply execute");
+	
+		service.deleteReply(vo.getRv_num());
+	
+		return "redirect:/admin/allReply";
+	}
 	
 }
 

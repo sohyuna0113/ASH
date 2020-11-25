@@ -14,6 +14,7 @@ import com.ashmall.domain.MemberVO;
 import com.ashmall.domain.OrderListVO;
 import com.ashmall.domain.OrderReadDetailVO;
 import com.ashmall.domain.OrderVO;
+import com.ashmall.domain.ReviewVO;
 import com.ashmall.dto.AdminDTO;
 import com.ashmall.persistence.AdminDAO;
 import com.ashmall.persistence.OrderDAO;
@@ -111,5 +112,17 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteOrder(int od_num) throws Exception {
 		dao.deleteOrder(od_num);
+	}
+
+	// 모든 댓글 
+	@Override
+	public List<ReviewVO> allReply() throws Exception {
+		return dao.allReply();
+	}
+
+	// 댓글 삭제 
+	@Override
+	public void deleteReply(int rv_num) throws Exception {
+		dao.deleteReply(rv_num);
 	}
 }

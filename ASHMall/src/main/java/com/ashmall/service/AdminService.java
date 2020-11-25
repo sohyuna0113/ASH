@@ -7,6 +7,7 @@ import com.ashmall.domain.MemberVO;
 import com.ashmall.domain.OrderListVO;
 import com.ashmall.domain.OrderReadDetailVO;
 import com.ashmall.domain.OrderVO;
+import com.ashmall.domain.ReviewVO;
 import com.ashmall.dto.AdminDTO;
 import com.ashmall.util.SearchCriteria;
 
@@ -50,4 +51,9 @@ public interface AdminService {
 	// 주문 삭제
 	public void deleteOrder(int od_num) throws Exception;
 	
+	// 모든 댓글
+	public List<ReviewVO> allReply() throws Exception;
+	
+	// 댓글 삭제
+	public void deleteReply(int rv_num) throws Exception;
 }

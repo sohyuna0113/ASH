@@ -11,6 +11,7 @@ import com.ashmall.domain.MemberVO;
 import com.ashmall.domain.OrderListVO;
 import com.ashmall.domain.OrderReadDetailVO;
 import com.ashmall.domain.OrderVO;
+import com.ashmall.domain.ReviewVO;
 import com.ashmall.dto.AdminDTO;
 import com.ashmall.util.SearchCriteria;
 
@@ -101,6 +102,18 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void deleteOrder(int od_num) throws Exception {
 		session.delete(NS + ".deleteOrder", od_num);
+	}
+
+	// 모든 댓글 
+	@Override
+	public List<ReviewVO> allReply() throws Exception {
+		return session.selectList(NS + ".allReply");
+	}
+
+	// 댓글 삭제 
+	@Override
+	public void deleteReply(int rv_num) throws Exception {
+		session.delete(NS + ".deleteReply", rv_num);
 	}
 	
 }

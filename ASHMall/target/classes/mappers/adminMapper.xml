@@ -112,5 +112,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from order_tb
 		where od_num = #{od_num}
 	</delete>
+	
+	<!-- 모든 댓글 -->
+	<select id="allReply" resultType="ReviewVO">
+		select
+    		r.rv_num, r.mb_id, r.pd_num, r.rv_content, r.rv_score, r.rv_date,
+    		m.mb_name
+		from review_tb r
+			inner join mb_tb m
+		on r.mb_id = m.mb_id
+	</select>
 
+	<!-- 댓글 지우기 -->
+	<delete id="deleteReply">
+		delete review_tb
+			where rv_num = ${rv_num}
+	</delete>
 </mapper>
