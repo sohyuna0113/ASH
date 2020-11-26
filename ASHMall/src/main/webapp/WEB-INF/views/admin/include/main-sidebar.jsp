@@ -90,6 +90,9 @@
 							<li>
 								<a href="/admin/product/insert">Upload</a>
 							</li>
+							<li>
+								<a href="/admin/product/review">Review</a>
+							</li>
 					<!-- Optionally, you can add icons to the links -->
 						</ul>
 					<li class="treeview">

@@ -87,7 +87,7 @@ public class AdminController {
 	}
 	
 	/* 모든 댓글 */ 
-	@RequestMapping(value="/allReply", method=RequestMethod.GET)
+	@RequestMapping(value="/board/review", method=RequestMethod.GET)
 	public void getAllReply(Model model) throws Exception {
 		logger.info("getAllReply execute");
 	
@@ -97,7 +97,7 @@ public class AdminController {
 	}
 	
 	/* 모든 댓글 */
-	@RequestMapping(value="/allReply", method=RequestMethod.POST)
+	@RequestMapping(value="/board/review", method=RequestMethod.POST)
 	public String postAllReply(ReviewVO vo) throws Exception {
 		logger.info("postAllReply execute");
 	

@@ -394,5 +394,7 @@ public class AdProductController {
 		return "redirect:/admin/product/userOrder?n=" + vo.getMb_id();
 		
 	}
+	
+	
 }
 
