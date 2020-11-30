@@ -113,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where od_num = #{od_num}
 	</delete>
 	
-	<!-- 모든 댓글 -->
+	<!-- 모든 댓글 
 	<select id="allReply" resultType="ReviewVO">
 		select
     		r.rv_num, r.mb_id, r.pd_num, r.rv_content, r.rv_score, r.rv_date,
@@ -123,9 +123,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on r.mb_id = m.mb_id
 	</select>
 
-	<!-- 댓글 지우기 -->
+	 댓글 지우기 
 	<delete id="deleteReply">
 		delete review_tb
 			where rv_num = ${rv_num}
-	</delete>
+	</delete> -->
 </mapper>
