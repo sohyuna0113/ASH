@@ -8,7 +8,10 @@ import com.ashmall.util.SearchCriteria;
 
 public interface BoardDAO {
 
+
+	/* 게시판 쓰기 */
 	public void create(BoardVO vo) throws Exception;
+	
 	
 	public BoardVO read(Integer bd_num) throws Exception;
 	

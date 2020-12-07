@@ -22,7 +22,7 @@ import com.ashmall.dto.MemberDTO;
 import com.ashmall.service.ReviewService;
 import com.ashmall.util.Criteria;
 import com.ashmall.util.PageMaker;
-/*
+
 @Controller
 @RequestMapping(value="/review/*")
 public class ReviewController {
@@ -31,7 +31,7 @@ public class ReviewController {
 	private ReviewService service;
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 	
-	상품 후기 쓰기  
+	/* 상품 후기 쓰기 */
 	@ResponseBody
 	@RequestMapping(value="write", method=RequestMethod.POST)
 	public void write(ReviewVO vo, HttpSession session) throws Exception {
@@ -44,7 +44,7 @@ public class ReviewController {
 		service.writeReview(vo, dto.getMb_id());
 	}
 	
-	상품 후기 수정 
+	/* 상품 후기 수정 */
 	@ResponseBody
 	@RequestMapping(value="modify", method=RequestMethod.POST)
 	public ResponseEntity<String> modify(ReviewVO vo){	
@@ -65,7 +65,7 @@ public class ReviewController {
 		return entity;
 	}
 
-	상품 후기 삭제
+	/* 상품 후기 삭제 */ 
 	@ResponseBody
 	@RequestMapping(value="{rv_num}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> deleteReview(@PathVariable("rv_num") int rv_num){
@@ -84,7 +84,7 @@ public class ReviewController {
 		return entity;
 	}
 	
-	상품 후기 리스트 (페이지 포함) 
+	/* 상품 후기 리스트 (페이지 포함) */ 
 	@RequestMapping(value = "{pd_num}/{page}", method=RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> listReview(
 							@PathVariable("pd_num") Integer pd_num,
@@ -126,5 +126,5 @@ public class ReviewController {
 	}
 	
 }
-	*/
+	
 	

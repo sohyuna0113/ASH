@@ -8,6 +8,7 @@ import com.ashmall.util.SearchCriteria;
 
 public interface BoardService {
 
+	/* 게시판 쓰기 */
 	public void regist(BoardVO vo) throws Exception;
 	
 	public BoardVO read(Integer bd_num) throws Exception;

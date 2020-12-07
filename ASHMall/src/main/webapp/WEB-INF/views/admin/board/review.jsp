@@ -3,10 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <%@include file="/WEB-INF/views/include/plugin_js.jsp"%>
 <%@include file="/WEB-INF/views/admin/include/head.jsp" %>
@@ -42,7 +39,6 @@ desired effect
 <script>
 	$(document).ready(
 			function() {
-
 				$('#searchBtn').on(
 						"click",
 						function(event) {

@@ -19,6 +19,7 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO dao;
 
+	/* 게시판 쓰기 */
 	@Override
 	public void regist(BoardVO vo) throws Exception {
 		dao.create(vo);
