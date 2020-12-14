@@ -6,7 +6,7 @@
 
 <html>
 <%@include file="/WEB-INF/views/admin/include/head.jsp" %>
-
+<%@include file="/WEB-INF/views/include/plugin_js.jsp"%>
 <head>
 <%-- 버튼 클릭 이벤트 메소드 --%>
 <script>
@@ -48,7 +48,7 @@
 			/* 체크된 상품의 value를 가져옴 */
 			
 			$("input[name='check']:checked").each(function(i){
-				var pd_num = $(this).val();
+				var pd_num = $(pd_num).val();
 				var pd_amount = $("input[name='amount_"+pd_num+"']").val();
 				var pd_buy = $("select[name='buy_"+pd_num+"']").val();
 				
@@ -125,8 +125,9 @@
 		var result = confirm("이 상품을 삭제하시겠습니까?");
 		if(result){
 			$(this).parent().submit();
-				/* $(".deleteForm").submit(); */ // 문법에러 : 다른 데이터가 삭제가 된다. ㅇ
-		} else{}
+				/* $(".deleteForm").submit(); */ 
+				// 문법에러 : 다른 데이터가 삭제가 된다. 
+			} else{}
 		});
 	});
 </script>
@@ -147,7 +148,7 @@
 		alert("MODIFY COMPLETED");
 	} else if ("${msg}" == "DELETE_SUCCESS") {
 		alert("DELETE COMPLETED");
-	}
+	};
 </script>
 </head>
 
